@@ -7,8 +7,8 @@
 !**/src/test/**/target/
 
 # Spring Boot secrets
-/application.properties
-/application.yml
+**/application.properties
+**/application.yml
 /*.jks
 /.env
 
