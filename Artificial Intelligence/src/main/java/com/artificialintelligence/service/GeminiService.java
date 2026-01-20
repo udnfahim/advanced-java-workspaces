@@ -17,6 +17,7 @@ public class GeminiService {
                 .build();
     }
 
+    //flash preview gemini
     public String generate(String prompt) {
         return client.models
                 .generateContent("gemini-3-flash-preview", prompt, null)

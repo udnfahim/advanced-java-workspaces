@@ -1,8 +1,5 @@
 package com.artificialintelligence.controller;
 
-import com.artificialintelligence.model.PersonalizedRequest;
-import com.artificialintelligence.model.PromptRequest;
-import com.artificialintelligence.model.QuestionRequest;
 import com.artificialintelligence.service.AIAssistantService;
 import com.artificialintelligence.service.GeminiService;
 import com.artificialintelligence.service.PromptTemplateService;
@@ -59,8 +56,5 @@ public class AIController {
     public String testAssistant() {
         return "AI Assistant endpoint is running!";
     }
-
-
-
 
 }
