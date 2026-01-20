@@ -1,0 +1,47 @@
+Practical Task:
+
+Single Responsibility Principle (SRP)
+
+   1.    Question:
+Write a class for managing employee records. Include functionalities for adding employee details, calculating salaries, and generating reports. Refactor the code to adhere to the Single Responsibility Principle.
+Hint: Separate the logic into different classes like Employee, SalaryCalculator, and ReportGenerator.
+
+   2.    Question:
+Design a class for a Book that includes methods for storing book information, printing book details, and saving them to a database. Refactor the class to adhere to SRP.
+
+===============================================================================================
+
+Open/Closed Principle (OCP)
+
+   1.    Question:
+Create a DiscountCalculator class that calculates discounts for different customer types (e.g., Regular, Premium, VIP). Add support for a new customer type without modifying the existing code.
+Hint: Use inheritance or a strategy pattern to make the class open for extension but closed for modification.
+
+   2.    Question:
+Design a Shape interface with an area() method. Implement two classes Circle and Rectangle. Add a new Triangle class to the code without modifying the existing Shape interface.
+===============================================================================================
+
+Liskov Substitution Principle (LSP)
+   1.    Question:
+Design a Bird class with methods fly() and eat(). Implement two subclasses, Sparrow and Penguin. Refactor the code to follow LSP if required.
+Hint: Penguin cannot fly, so rethink the design.
+
+   2.    Question:
+Create a class hierarchy where Rectangle is the base class and Square is a derived class. Refactor the classes to avoid breaking LSP.
+===============================================================================================
+
+Interface Segregation Principle (ISP)
+   1.    Question:
+You have an interface Printer with methods print(), scan(), and fax(). Implement this interface in BasicPrinter and MultiFunctionPrinter classes. Refactor the code to adhere to ISP.
+
+   2.    Question:
+Design a Vehicle interface with methods drive() and fly(). Implement it in Car and Airplane classes. Refactor the interface to align with ISP.
+===============================================================================================
+
+Dependency Inversion Principle (DIP)
+   1.    Question:
+Write a PaymentService class that directly depends on a PayPalPayment class. Refactor the code so the PaymentService depends on an interface instead of a concrete implementation.
+Hint: Introduce an interface like PaymentProcessor and let PayPalPayment implement it.
+
+   2.    Question:
+Design a Notification class that sends messages via email. Refactor the class to make it work with other mediums like SMS or push notifications without changing the core logic.
