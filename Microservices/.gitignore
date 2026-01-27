@@ -1,0 +1,78 @@
+# =========================
+# Maven / Java Backend
+# =========================
+/target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Spring Boot secrets
+**/application.properties
+**/application.yml
+/*.jks
+*/.env
+
+# =========================
+# IDE Configurations
+# =========================
+
+## IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+## Eclipse / STS
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+## NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+## VS Code
+.vscode/
+
+# =========================
+# Node / Frontend
+# =========================
+/node_modules/
+/build/
+/dist/
+/npm-debug.log*
+/yarn-error.log*
+
+# =========================
+# Logs and Temporary Files
+# =========================
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# =========================
+# Optional: Other sensitive / local files
+# =========================
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =========================
+# Images / Assets
+# =========================
+# Keep images in src/main/resources/static/assets/ tracked
+/src/main/resources/templates/
