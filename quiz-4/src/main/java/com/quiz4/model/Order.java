@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
@@ -17,7 +18,7 @@ public class Order {
     private String customerName;
     private String productName;
     private Integer quantity;
-    private double totalPrice;
-    private LocalDateTime localDateTime = LocalDateTime.now();
+    private BigDecimal totalPrice;
+    private LocalDateTime orderTime = LocalDateTime.now();
     private OrderStatus orderStatus;
 }

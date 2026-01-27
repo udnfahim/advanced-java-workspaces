@@ -10,12 +10,7 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends MongoRepository<Order,String> {
-
-    //using ai
-
-    @Query("{ 'localDateTime': { $gte: ?0, $lt: ?1 } }")
-    List<Order> findOrdersForToday(LocalDateTime todayStart, LocalDateTime tomorrowStart);
-
-    @Query("{ 'localDateTime': { $gte: ?0 } }")
-    List<Order> findOrdersForThisMonth(LocalDateTime monthStart);
+    List<Order> findByOrderTimeBetween(LocalDateTime start, LocalDateTime end);
+    List<Order> findByOrderTimeAfter(LocalDateTime startOfMonth);
+    List<Order> findByOrderStatus(String status);
 }
