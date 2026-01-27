@@ -30,20 +30,14 @@
         <!-- Welcome -->
         <div class="card mb-4">
             <div class="card-body">
-                <h4>
-                    Welcome,
-                    <span sec:authentication="principal.username"></span>
-                </h4>
 
-                <p class="mb-1">
-                    Your roles:
-                    <span sec:authentication="authorities"></span>
-                </p>
-
+                <h4>Welcome, <span th:text="${username}"></span></h4>
+                <p>Your roles: <span th:text="${roles}"></span></p>
                 <p th:if="${rememberMe}">
                     🔐 You are logged in using <strong>Remember Me</strong>.
                     Session expires in <span th:text="${expiresIn}"></span> seconds.
                 </p>
+
             </div>
         </div>
 

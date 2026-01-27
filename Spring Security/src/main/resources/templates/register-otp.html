@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Verification | Secure Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body { background-color: #f5f6fa; }
+        .auth-card { max-width: 450px; margin: auto; margin-top: 80px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,.08); }
+        .btn-primary { background-color: #696cff; border: none; }
+        .btn-primary:hover { background-color: #5f63f2; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card auth-card p-4">
+        <h4 class="text-center mb-3">Verify Your Email</h4>
+        <p class="text-center text-muted mb-4">Enter the OTP sent to your email</p>
+
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <form th:action="@{/register/otp}" method="post">
+            <input type="hidden" name="email" th:value="${otpEmail}">
+            <div class="mb-3">
+                <label>OTP</label>
+                <input type="text" name="otp" class="form-control" placeholder="Enter OTP" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Verify & Register</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <small>Didn't receive OTP? <a th:href="@{/register}">Resend</a></small>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    let error = /*[[${error}]]*/ null;
+    let success = /*[[${success}]]*/ null;
+    if (error) Swal.fire({ icon: 'error', title: 'Oops!', text: error });
+    if (success) Swal.fire({ icon: 'success', title: 'Success', text: success });
+</script>
+</body>
+</html>

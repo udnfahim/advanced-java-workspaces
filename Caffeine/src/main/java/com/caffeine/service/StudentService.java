@@ -24,17 +24,20 @@ public class StudentService {
 
     @Cacheable(value = "students", key = "#id")
     public Student getStudentByIdCached(Integer id) throws InterruptedException {
-        Thread.sleep(2000); // simulate DB delay
+
+        Thread.sleep(2000);
         return studentRepo.findById(id).orElse(null);
     }
 
     public Student getStudentByIdNoCache(Integer id) throws InterruptedException {
+
         Thread.sleep(2000);
         return studentRepo.findById(id).orElse(null);
     }
 
     @CachePut(value = "students", key = "#id")
     public Student updateStudent(Integer id, Student student) {
+
         student.setId(id);
         return studentRepo.save(student);
     }

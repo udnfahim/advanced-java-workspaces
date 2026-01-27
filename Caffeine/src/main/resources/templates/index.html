@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Cache</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        table, th, td { border: 1px solid #ccc; }
+        th, td { padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        input, button { margin: 5px; padding: 5px; }
+        .time { font-weight: bold; color: green; }
+    </style>
+</head>
+<body>
+<h1>Student Cache</h1>
+
+<h2>Update / Delete Student</h2>
+<input type="number" id="studentId" placeholder="ID (required)">
+<input type="text" id="studentName" placeholder="Name">
+<input type="number" id="studentAge" placeholder="Age">
+<button onclick="updateStudent()">Update</button>
+
+<h2>All Students</h2>
+<button onclick="loadStudents()">Refresh List</button>
+<table id="studentTable">
+    <thead>
+    <tr><th>ID</th><th>Name</th><th>Age</th><th>Actions</th></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<h2>Get Student By ID</h2>
+<input type="number" id="getId" placeholder="Student ID">
+<button onclick="getStudentCached()">Cached</button>
+<button onclick="getStudentNoCache()">No Cache</button>
+<p id="getResult"></p>
+
+<script>
+    const baseUrl = '/api/cache';
+
+    // Load all students
+    async function loadStudents() {
+        const res = await fetch(`${baseUrl}/all`);
+        const students = await res.json();
+        const tbody = document.querySelector("#studentTable tbody");
+        tbody.innerHTML = "";
+        students.forEach(s => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${s.id}</td>
+                <td>${s.name}</td>
+                <td>${s.age}</td>
+                <td>
+                    <button onclick="deleteStudent(${s.id})">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Update student
+    async function updateStudent() {
+        const id = document.getElementById("studentId").value;
+        const name = document.getElementById("studentName").value;
+        const age = document.getElementById("studentAge").value;
+        if (!id) { alert("ID is required"); return; }
+        if(!name && !age) { alert("Provide Name or Age to update"); return; }
+
+        const student = {};
+        if(name) student.name = name;
+        if(age) student.age = parseInt(age);
+
+        await fetch(`${baseUrl}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(student)
+        });
+
+        document.getElementById("studentId").value = "";
+        document.getElementById("studentName").value = "";
+        document.getElementById("studentAge").value = "";
+        loadStudents();
+    }
+
+    // Delete student
+    async function deleteStudent(id) {
+        await fetch(`${baseUrl}/${id}`, { method: 'DELETE' });
+        loadStudents();
+    }
+
+    // Get student cached
+    async function getStudentCached() {
+        const id = document.getElementById("getId").value;
+        if(!id) return;
+
+        const res = await fetch(`${baseUrl}/${id}/cached`);
+        const data = await res.json();
+
+        document.getElementById("getResult").innerText =
+            `Cached: ${JSON.stringify(data.student)} | Time: ${data.timeMs} ms`;
+    }
+
+    // Get student no cache
+    async function getStudentNoCache() {
+        const id = document.getElementById("getId").value;
+        if(!id) return;
+
+        const res = await fetch(`${baseUrl}/${id}/nocache`);
+        const data = await res.json();
+
+        document.getElementById("getResult").innerText =
+            `No Cache: ${JSON.stringify(data.student)} | Time: ${data.timeMs} ms`;
+    }
+
+    loadStudents();
+</script>
+</body>
+</html>
